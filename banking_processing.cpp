@@ -229,7 +229,7 @@ void login_user(Database &database) {
 void new_user_date(date &date);
 
 void read_new_card_data(card &card, int n) {
-    cout << "Card Number";
+    cout << "Card Number ";
     cout << n << '\n';
     cout << "Debit or Credit Card?\n";
     cin >> card.type;
@@ -238,6 +238,9 @@ void read_new_card_data(card &card, int n) {
     cout << "Your card number is:\n";
     card.number = to_string(rng() % 10000000000 + 1000000000);
     card.ballance = 0;
+    card.expire_date.day = rng() % 31;
+    card.expire_date.month = rng() % 10 + 2;
+    card.expire_date.year = 2027;
     card.cvv = to_string(rng() % 900 + 100);
     card.pin = rng() % 9000 + 1000;
     card.interest_rate = rng() % 900 + 100, card.interest_rate /= 100;
@@ -245,12 +248,13 @@ void read_new_card_data(card &card, int n) {
     cout << "Card Number: " << card.number <<'\n';
     cout << "Cvv: " << card.cvv << '\n';
     cout << "Pin: " << card.pin << '\n';
+    cout << "Expiration date: " << card.expire_date.day << ' ' << card.expire_date.month << ' ' << card.expire_date.year << '\n';
     cout << "Card Interest Rate: " << card.interest_rate << '\n';
 }
 
 void new_user_account(Account &account) {
     cout << "How many cards do you want?\n";
-    cout << "Be aware: You can create a maximum of 2 Cards for your account type";
+    cout << "Be aware: You can create a maximum of 2 Cards for your account type ";
     cin >> account.number_of_cards;
     cout << "Your account IBAN is:\n";
     account.iban = "RORNCB" + to_string(rng() % 100000000000 + 1000000000);
